@@ -43,7 +43,7 @@ touchstart->touchmove->touchend->300ms->click
 
 ##### 结论
 
-写到这里其实可以得出:<b>绝大部分的 点击穿透 都是因为在触发 click 之前的 touchstart/touchmove/touchend 等事件里面页面发生了改变导致的 click 对象改变,并且新的对象正好绑定 click 事件或者默认有 click 事件</b>
+写到这里其实可以得出:<b>绝大部分的 点击穿透 都是因为在触发 click 之前的 touchstart/touchmove/touchend 等事件里面页面发生了改变导致的 click 对象改变,并且新的对象正好绑定 click 事件或者默认有 click 事件被触发</b>
 
 ##### eg:
 
@@ -51,8 +51,8 @@ touchstart->touchmove->touchend->300ms->click
 
 #### 当前情况
 
-如今，是个移动端开发的 web 应用性能可以同原生应用匹敌的时代，所有的单击事件都有 300 毫秒延迟，必然是不可接受的。此外，随着响应式设计的逐步推进，开发者们已经根据设备本身的尺寸对站点进行了优化，也就逐渐淘汰了诸如双击缩放的约定。
-可喜的是，浏览器开发商已经意识到这个问题，并已相继提出了一些解决方案
+当前的 web 应用性能可以同原生应用匹敌的时代，所有的单击事件都有 300 毫秒延迟，必然是不可接受的。而且，随着响应式设计的逐步推进，开发者们已经根据设备本身的尺寸对站点进行了优化，也就逐渐淘汰了诸如双击缩放的约定。
+并且 300ms 已经是体验的主要阻碍了,浏览器开发商已经意识到这个问题，并已相继提出了一些解决方案
 
 ##### 解决方法
 
@@ -60,10 +60,9 @@ touchstart->touchmove->touchend->300ms->click
 
 2. 所有 click 事件都改用 touch 事件 (可以,但是估计大家也不喜欢,之前用过一个 tap.js,大家可以查一下)
 
-3. <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1"> 禁用双击放大,也就不用判断双击放大了,也就没有延时了 
-   />
+3. `<meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1"></meta>` 禁用双击放大,也就不用判断双击放大了,也就没有延时了
 
-4. <meta name="viewport" content="width=device-width"></meta> 也是不会双击放大了 (用rem/vw为单位的时候基本上肯定会写 方法3,4,所以其实我们不经意间已经用了这种方法来去掉click延迟)3,4方法大部分情况没问题,听说在某些ios机型上有bug,但目前我还没发现
+4. `<meta name="viewport" content="width=device-width"></meta>` 也是不会双击放大了 (用 rem/vw 为单位的时候基本上肯定会写 方法 3,4,所以其实我们不经意间已经用了这种方法来去掉 click 延迟)3,4 方法大部分情况没问题,听说在某些 ios 机型上有 bug,但目前我还没发现
 
 5. 指针事件 (Pointer Events) css 里设置 touch-action:none (基本不用考虑这个了,1️ 他的原理是先用这个把底层的 click 事件禁用了,然后 300 秒以后再恢复,主要是用来解决点击穿透的)
 
@@ -80,6 +79,9 @@ touchstart->touchmove->touchend->300ms->click
 #### 参考文档
 
 [移动端 Click300 毫秒点击延迟的来龙去脉](https://www.cnblogs.com/dunken/p/4527869.html)
+
 [移动端页面点击穿透问题](https://www.jianshu.com/p/77a3c89760a4)
+
 [FastClick 填坑及源码解析](https://www.cnblogs.com/vajoy/p/5522114.html)
+
 [fastclick 解析与 ios11.3 相关 bug 原因分析](https://segmentfault.com/a/1190000015234652)
