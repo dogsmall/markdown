@@ -63,9 +63,9 @@ var setData:ConfigFn<string> = function<T>(value:T):T {
 ```
 
 #### 泛型对象
-
-
-class student {
-  name:string;
-  age:number;
-}
+```JS
+  class student {
+    name:string;
+    age:number;
+  }
+```
