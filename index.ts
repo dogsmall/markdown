@@ -1,43 +1,42 @@
-// class MinClass<T> {
-//   public list: T[] = [];
-//   add(value: T): void {
-//     this.list.push(value);
-//   }
-//   min(): T {
-//     let min: T = this.list[0];
-//     for (let index = 1; index < this.list.length; index++) {
-//       const element = this.list[index];
-//       if (min > this.list[index]) {
-//         min = this.list[index];
-//       }
-//     }
-//     return min;
-//   }
-// }
-// function getData<T>(value:T):T{
-//   return value
-// }
-// getData<string>("value")
-// // 函数类型接口
-// interface ConfigFn {
-//   (value: string, value2: string): string;
-// }
-// var setData: ConfigFn = function(value: string, value2: string): string {
-//   return value + value2;
-// };
+function func() {
+  switch (arguments.length) {
+    case 1:
+      // TODO
+      break;
+    case 2:
+      // TODO
+      break;
+    case 2:
+      // TODO
+      break;
+    default:
+      break;
+  }
+}
+let object = {
+    argsNull:"",
+    argsOne:"1",
+    argsTwo:"2",
 
-// // 泛型类型接口
+}
+function addMethod(object, name, fn) {
+    var old = object[name]
+    object[name] = function() {
+        if(fn.length === arguments) {
+            return fn.apple(this,arguments)
+        }else {
+            return old.apple(this,arguments)
+        }
+    }
+}
 
-// interface ConfigFn {
-//   <T>(value: T): T;
-// }
-// var setData:ConfigFn = function<T>(value:T):T {
-//   return value  
-// }
 
-// interface ConfigFn<T> {
-//   (value: T): T;
-// }
-// var setData:ConfigFn<string> = function<T>(value:T):T {
-//   return value  
-// }
+addMethod(object,"toString",function () {
+    return this.argsNull
+})
+addMethod(object,"toString",function (argsOne) {
+    return this.argsOne
+})
+addMethod(object,"toString",function (argsOne,argsTwo) {
+    return this.argsTwo
+})
