@@ -11,8 +11,11 @@ let myAdd: (baseValue: number, increment: number) => number = function(x, y) {
 };
 ```
 ### 2. 形参/实参
-略
+1. 可选参数
+2. 默认参数  
 ### 3. 重载
+重点:箭头函数保存的this是函数创建的时候的this值 而不是调用时候的this值
+
 重载是指函数或者方法有相同的名称，但是参数个数或类型不相同的情形，这样的同名不同参的函数或者方法之间，互相称之为重载函数或方法。
 备注:如果有人问你JS有没有重载,回答有或者没有都可以,JS没有java那种明确的重载机制,但是JS确实可以实现重载功能(通过arguments)
 ```JS
@@ -83,5 +86,3 @@ function New(f) {
 }
 New(Father)("gsw","18")
 ```
-
-### 5. bind实现
