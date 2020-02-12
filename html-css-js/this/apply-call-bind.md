@@ -49,10 +49,11 @@ fun.apply(thisArg, [argsArray])
 ```JS
 fun.call(thisArg[, arg1[, arg2[, ...]]])
 ```
-### bind 
+### bind  
 ```JS
 if (typeof Function.prototype.bind === "undefined"){
   Function.prototype.bind = function (thisArgs){
+    // 闭包
     var fn = this,
         slice = Array.prototype.slice,
         args = slice.call(arguments, 1);
